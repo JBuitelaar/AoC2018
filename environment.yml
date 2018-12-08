@@ -1,0 +1,10 @@
+name: aoc
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python>=3.6.7,<3.7
+  - numpy
+  - pandas
+  - ipykernel
+  - matplotlib

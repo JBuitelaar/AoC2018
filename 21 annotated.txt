@@ -1,0 +1,28 @@
+seti 123 0 2            # 00: r2=123
+bani 2 456 2            # 01: r2=72
+eqri 2 72 2             # 02: r2=1
+addr 2 4 4              # 03: goto 5
+seti 0 0 4
+seti 0 8 2              # 05: r2=0
+
+
+bori 2 65536 5          # 06: r5=r2|65536
+seti 2238642 0 2        # 07: r2=2238642
+bani 5 255 3            # 08: r3=r5&255
+addr 2 3 2              # 09: r2+=r3
+bani 2 16777215 2       # 10: r2&=16777215
+muli 2 65899 2          # 11: r2*=65899
+bani 2 16777215 2       # 12: r2&=16777215
+gtir 256 5 3            # 13: if 256>r5  goto 28 else 17
+
+seti 0 8 3              # 17: r3=0
+addi 3 1 1              # 18: r1 = r3+1
+muli 1 256 1            # 19: r1 *= 256
+gtrr 1 5 1              # 20: r1 = (r1>r5)
+addr 1 4 4              # 21: if r1 goto 26 else 24
+
+addi 3 1 3              # 24: r3+=1
+seti 17 2 4             # 25: goto 18
+setr 3 9 5              # 26: r5=r3
+seti 7 9 4              # 27: goto 8
+eqrr 2 0 3              # 28: if (r2==r0) EXIT else goto 6

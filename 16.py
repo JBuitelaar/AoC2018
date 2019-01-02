@@ -1,4 +1,4 @@
-
+from src.operators import *
 import re
 input_raw = open('16.txt').read()
 
@@ -12,103 +12,6 @@ def parse(string, spl=', '):
 
 samples = [(parse(b), parse(op, ' '), parse(a)) for (b, op, a) in parsed]
 
-
-def addr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A]+reg[B]
-    return reg
-
-
-def addi(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A]+B
-    return reg
-
-
-def mulr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A]*reg[B]
-    return reg
-
-
-def muli(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A]*B
-    return reg
-
-
-def banr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A] & reg[B]
-    return reg
-
-
-def bani(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A] & B
-    return reg
-
-
-def borr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A] | reg[B]
-    return reg
-
-
-def bori(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A] | B
-    return reg
-
-
-def setr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = reg[A]
-    return reg
-
-
-def seti(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = A
-    return reg
-
-
-def gtir(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = int(A > reg[B])
-    return reg
-
-
-def gtri(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = int(reg[A] > B)
-    return reg
-
-
-def gtrr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = int(reg[A] > reg[B])
-    return reg
-
-
-def eqir(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = int(A == reg[B])
-    return reg
-
-
-def eqri(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = int(reg[A] == B)
-    return reg
-
-
-def eqrr(registers, A, B, C):
-    reg = registers[:]
-    reg[C] = int(reg[A] == reg[B])
-    return reg
-
-
 operators = [addr, addi, mulr, muli, banr, bani, bori, borr, setr, seti,
              gtir, gtri, gtrr, eqir, eqri, eqrr]
 
@@ -116,7 +19,7 @@ operators = [addr, addi, mulr, muli, banr, bani, bori, borr, setr, seti,
 print("Part I")
 
 def matches(sample):
-    (before, [opcode, a, b, c], after) = sample
+    (before, [_, a, b, c], after) = sample
     return sum(1 for op in operators if op(before, a, b, c) == after)
 
 
